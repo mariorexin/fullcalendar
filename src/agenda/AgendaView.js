@@ -277,10 +277,20 @@ function AgendaView(element, calendar, viewName) {
 		maxd = addMinutes(cloneDate(d), maxMinute);
 		addMinutes(d, minMinute);
 		slotCnt = 0;
+		
+		var curDate = formatDate(new Date(), 'HH:mm');
+		var curTime = new Date("1/1/2011 " + curDate);
+		
+		
 		for (i=0; d < maxd; i++) {
 			minutes = d.getMinutes();
+			
+			var slotDate = formatDate(cloneDate(d), 'HH:mm');
+			var slotTime = new Date("1/1/2011 " + slotDate);
+			var slotClass = (curTime > slotTime) ? 'fc-past-date' : '';
+			
 			s +=
-				"<tr class='fc-slot" + i + ' ' + (!minutes ? '' : 'fc-minor') + "'>" +
+				"<tr class='fc-slot" + i + ' ' + (!minutes ? '' : 'fc-minor') + " "+ slotClass +"'>" +
 				"<th class='fc-agenda-axis " + headerClass + "'>" +
 				((!slotNormal || !minutes) ? formatDate(d, opt('axisFormat')) : '&nbsp;') +
 				"</th>" +
@@ -325,6 +335,7 @@ function AgendaView(element, calendar, viewName) {
 			}else{
 				bodyCell.removeClass(tm + '-past-date');
 			}
+			
 			setDayID(headCell.add(bodyCell), date);
 		}
 	}
