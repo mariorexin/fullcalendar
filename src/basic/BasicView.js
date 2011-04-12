@@ -139,6 +139,7 @@ function BasicView(element, calendar, viewName) {
 			s +=
 				"<tr class='fc-week" + i + "'>";
 			for (j=0; j<colCnt; j++) {
+								
 				s +=
 					"<td class='fc- " + contentClass + " fc-day" + (i*colCnt+j) + "'>" + // need fc- for setDayID
 					"<div>" +
@@ -211,6 +212,12 @@ function BasicView(element, calendar, viewName) {
 			}else{
 				cell.removeClass(tm + '-state-highlight fc-today');
 			}
+			if (+date < +today) {
+				cell.addClass(tm + '-past-date');
+			}else{
+				cell.removeClass(tm + '-past-date');
+			}
+						
 			cell.find('div.fc-day-number').text(date.getDate());
 			if (dowDirty) {
 				setDayID(cell, date);

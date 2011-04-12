@@ -16,7 +16,10 @@
 	opacity: .2;
 	filter: alpha(opacity=20); /* for IE */
 	}
-	
+
+.fc-past-date {
+	background: #eee;
+}
 
 
 /* Buttons
