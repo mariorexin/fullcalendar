@@ -281,13 +281,24 @@ function AgendaView(element, calendar, viewName) {
 		var curDate = formatDate(new Date(), 'HH:mm');
 		var curTime = new Date("1/1/2011 " + curDate);
 		
-		
 		for (i=0; d < maxd; i++) {
 			minutes = d.getMinutes();
 			
 			var slotDate = formatDate(cloneDate(d), 'HH:mm');
 			var slotTime = new Date("1/1/2011 " + slotDate);
 			var slotClass = (curTime > slotTime) ? 'fc-past-date' : '';
+			
+			if (curTime.getHours() == slotTime.getHours()) {
+								
+				if (curTime.getMinutes() >= opt('slotMinutes') && minutes == opt('slotMinutes')) {
+					
+					slotClass += ' fc-current-time';
+				}
+				if (curTime.getMinutes() <= opt('slotMinutes') && minutes == 00) {
+					
+					slotClass += ' fc-current-time';
+				}
+			}
 			
 			s +=
 				"<tr class='fc-slot" + i + ' ' + (!minutes ? '' : 'fc-minor') + " "+ slotClass +"'>" +

@@ -21,6 +21,10 @@
 	background: #eee;
 }
 
+.fc-current-time th, .fc-current-time td {
+	border-bottom: 1px solid red !important;
+}
+
 
 /* Buttons
 ------------------------------------------------------------------------*/
